@@ -68,9 +68,9 @@ public class SecurityConfig  {
             .authorizeHttpRequests((authorize) -> authorize
                     .requestMatchers("error").permitAll()
                     .requestMatchers("/admin").hasRole("ADMIN")
-                    .requestMatchers("/users").permitAll()//.hasRole("USER")
+                    .requestMatchers("/roles").permitAll()//.hasRole("ADMIN")
+                    .requestMatchers("/users/**").permitAll()//.hasRole("USER")
                     .requestMatchers("/auth").permitAll()
-                    .requestMatchers("/users").permitAll()
                     .requestMatchers("/h2/**").permitAll()
             )
             .headers((header) -> header.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));

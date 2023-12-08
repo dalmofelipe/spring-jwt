@@ -1,5 +1,6 @@
 package com.dalmofelipe.SpringJWT.User;
 
+import com.dalmofelipe.SpringJWT.Role.Role;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -15,9 +16,9 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@Table(name = "tb_users")
 public class User implements UserDetails {
-    
-    @Getter
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,7 +36,7 @@ public class User implements UserDetails {
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    private List<UserRole> roles = new ArrayList<>();
+    private List<Role> roles = new ArrayList<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

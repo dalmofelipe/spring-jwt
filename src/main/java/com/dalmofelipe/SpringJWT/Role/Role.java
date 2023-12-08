@@ -1,16 +1,14 @@
-package com.dalmofelipe.SpringJWT.User;
+package com.dalmofelipe.SpringJWT.Role;
 
+import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.Data;
 
 @Data
 @Entity
-public class UserRole implements GrantedAuthority {
+@Table(name = "tb_roles")
+public class Role implements GrantedAuthority {
 
     @Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -22,5 +20,4 @@ public class UserRole implements GrantedAuthority {
     public String getAuthority() {
         return this.name;
     }
-
 }
