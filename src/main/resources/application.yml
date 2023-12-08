@@ -19,3 +19,13 @@ jwt:
   token:
     expiration: 1000000000
     secret: spring-jwt-2023
+  private.key: classpath:app.key
+  public.key: classpath:app.pub
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.security: INFO
+#    org.springframework.boot.autoconfigure: DEBUG
+

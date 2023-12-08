@@ -39,7 +39,7 @@ public class AuthEndpoint {
             String fullToken = "Bearer " + token;
             
             return ResponseEntity.ok(fullToken);
-        } 
+        }
         catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
