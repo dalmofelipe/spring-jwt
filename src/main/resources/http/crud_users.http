@@ -1,0 +1,17 @@
+@host=http://localhost:8000
+
+
+### Lista todos usuários
+GET {{host}}/users HTTP/1.1
+
+
+### Salva novo usuáro
+POST {{host}}/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Felipe",
+    "username": "felipe",
+    "email": "felipe@email.com",
+    "password": "321123"
+}

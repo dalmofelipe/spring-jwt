@@ -1,6 +1,8 @@
 
 server:
   port: 8000
+  error:
+    include-stacktrace: never
 
 spring:
   datasource:
@@ -25,7 +27,9 @@ jwt:
 logging:
   level:
     root: INFO
-    org.springframework.web: INFO
-    org.springframework.security: INFO
-#    org.springframework.boot.autoconfigure: DEBUG
-
+    org:
+      springframework:
+        web: INFO
+        security: INFO
+#       boot:
+#          autoconfigure: DEBUG
