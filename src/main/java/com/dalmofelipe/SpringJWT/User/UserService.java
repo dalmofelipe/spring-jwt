@@ -1,13 +1,13 @@
 package com.dalmofelipe.SpringJWT.User;
 
-import com.dalmofelipe.SpringJWT.Role.Role;
-import com.dalmofelipe.SpringJWT.Role.RoleRecord;
-import com.dalmofelipe.SpringJWT.Role.RoleRepository;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import com.dalmofelipe.SpringJWT.Role.Role;
+import com.dalmofelipe.SpringJWT.Role.RoleRecord;
+import com.dalmofelipe.SpringJWT.Role.RoleRepository;
 
 @Service
 public class UserService {
