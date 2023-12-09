@@ -1,4 +1,4 @@
-package com.dalmofelipe.SpringJWT.User;
+package com.dalmofelipe.SpringJWT.Auth.dtos;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 

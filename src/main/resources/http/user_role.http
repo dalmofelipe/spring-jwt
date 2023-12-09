@@ -1,9 +1,9 @@
 @host=http://localhost:8000
 
 
-POST {{host}}/users/1/role HTTP/1.1
+POST {{host}}/users/3/role HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "GLOBAL"
+    "name": "ADMIN"
 }

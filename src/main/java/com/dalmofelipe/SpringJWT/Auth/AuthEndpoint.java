@@ -3,7 +3,7 @@ package com.dalmofelipe.SpringJWT.Auth;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dalmofelipe.SpringJWT.User.LoginDTO;
+import com.dalmofelipe.SpringJWT.Auth.dtos.LoginDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

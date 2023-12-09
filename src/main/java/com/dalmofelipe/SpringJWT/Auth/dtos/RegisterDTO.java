@@ -1,9 +1,11 @@
-package com.dalmofelipe.SpringJWT.User;
+package com.dalmofelipe.SpringJWT.Auth.dtos;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
+
+import com.dalmofelipe.SpringJWT.User.User;
 
 @Data
 public class RegisterDTO {
