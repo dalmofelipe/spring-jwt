@@ -1,6 +1,7 @@
 package com.dalmofelipe.SpringJWT.User;
 
 import com.dalmofelipe.SpringJWT.Role.Role;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -35,6 +36,7 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
     private List<Role> roles = new ArrayList<>();
 

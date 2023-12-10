@@ -32,21 +32,6 @@ public class UserEndpoints {
         return ResponseEntity.ok().body(this.userRepository.findAll());
     }
 
-    @PostMapping
-    public ResponseEntity<Object> createUser(@Validated @RequestBody RegisterDTO dto) {
-        try {
-            return ResponseEntity.ok(this.userService.saveUser(dto));
-        } 
-        catch (RuntimeException e) {
-            var err = new ApiError();
-            err.setMessage(e.getMessage());
-
-            return ResponseEntity
-                .status(HttpStatus.UNPROCESSABLE_ENTITY)
-                .body(err);
-        }
-    }
-
     @PostMapping("/{id}/role")
     public ResponseEntity<Object> setUserRole(@PathVariable(name = "id") Long id,
             @RequestBody RoleRecord role) {

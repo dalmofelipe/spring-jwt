@@ -70,7 +70,7 @@ public class SecurityConfig  {
                     .requestMatchers("/admin").hasRole("ADMIN")
                     .requestMatchers("/roles").permitAll()//.hasRole("ADMIN")
                     .requestMatchers("/users/**").permitAll()//.hasRole("USER")
-                    .requestMatchers("/auth").permitAll()
+                    .requestMatchers("/auth/**").permitAll()
                     .requestMatchers("/h2/**").permitAll()
             )
             .headers((header) -> header.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));

@@ -1,5 +1,9 @@
 package com.dalmofelipe.SpringJWT.Auth;
 
+import com.dalmofelipe.SpringJWT.Auth.dtos.RegisterDTO;
+import com.dalmofelipe.SpringJWT.Exceptions.ApiError;
+import com.dalmofelipe.SpringJWT.User.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,9 +28,12 @@ public class AuthEndpoint {
     @Autowired
     private TokenService tokenService;
 
+    @Autowired
+    private UserService userService;
+
     
-    @PostMapping
-    public ResponseEntity<String> auth(@Validated @RequestBody LoginDTO login) {
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@Validated @RequestBody LoginDTO login) {
 
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken
             = login.toAuthToken();
@@ -45,4 +52,18 @@ public class AuthEndpoint {
         }
     }
 
+    @PostMapping("/register")
+    public ResponseEntity<Object> register(@Validated @RequestBody RegisterDTO dto) {
+        try {
+            return ResponseEntity.ok(this.userService.saveUser(dto));
+        }
+        catch (RuntimeException e) {
+            var err = new ApiError();
+            err.setMessage(e.getMessage());
+
+            return ResponseEntity
+                    .status(HttpStatus.UNPROCESSABLE_ENTITY)
+                    .body(err);
+        }
+    }
 }

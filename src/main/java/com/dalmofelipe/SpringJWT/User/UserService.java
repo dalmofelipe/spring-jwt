@@ -2,6 +2,7 @@ package com.dalmofelipe.SpringJWT.User;
 
 import java.util.Optional;
 
+import com.dalmofelipe.SpringJWT.Auth.UserPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,16 +16,23 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
     @Autowired
     private RoleRepository roleRepository;
+
+    @Autowired
+    private UserPasswordEncoder userPasswordEncoder;
 
 
     public User saveUser(RegisterDTO dto) {
         Optional<User> userOpt = this.userRepository.findByEmail(dto.getEmail());
         if(userOpt.isPresent()) throw new RuntimeException("este email está em uso");
-        return this.userRepository.save(dto.toModel());
-    }
 
+        var user = dto.toModel();
+        user.setPassword(userPasswordEncoder.encode(dto.getPassword()));
+
+        return this.userRepository.save(user);
+    }
 
     public User addUserRole(Long id, RoleRecord roleRecord) {
         Optional<User> userOpt = this.userRepository.findById(id);
