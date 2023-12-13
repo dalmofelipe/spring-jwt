@@ -1,5 +1,0 @@
-@host=http://localhost:8000
-
-
-### Lista todos usuários
-GET {{host}}/users HTTP/1.1

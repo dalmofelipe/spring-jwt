@@ -33,7 +33,7 @@ public class AuthEndpoint {
 
     
     @PostMapping("/login")
-    public ResponseEntity<String> login(@Validated @RequestBody LoginDTO login) {
+    public ResponseEntity<Object> login(@Validated @RequestBody LoginDTO login) {
 
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken
             = login.toAuthToken();
@@ -48,7 +48,10 @@ public class AuthEndpoint {
             return ResponseEntity.ok(fullToken);
         }
         catch (Exception e) {
-            return ResponseEntity.badRequest().build();
+            var err = new ApiError();
+            err.setMessage(e.getMessage());
+
+            return ResponseEntity.badRequest().body(err);
         }
     }
 

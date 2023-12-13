@@ -11,8 +11,10 @@ spring:
     username: sa
     password: 
   jpa:
+    show-sql: true
     database-platform: org.hibernate.dialect.H2Dialect
     defer-datasource-initialization: true
+    open-in-view: false
   h2:
     console:
       enabled: true
@@ -23,7 +25,7 @@ spring:
 
 jwt:
   token:
-    expiration: 1000000000
+    expiration: 300000
     secret: spring-jwt-2023
   private:
     key: classpath:app.key

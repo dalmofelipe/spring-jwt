@@ -1,0 +1,133 @@
+### TEST: 
+### 1. ADMIN faz login recenbendo token de acesso
+### 2. ADMIN criar uma nova ROLE - SET-USER (rota liberada para ADMIN) 
+### 3. ADMIN atribui a ROLE SET-USER a ele mesmo
+### 4. NOVO USUÁRIO se registra na API - Rota liberada para todos 
+### 5. ADMIN atribui a ROLE SET-USER ao NOVO USUÁRIO
+### 6. ADMIN cria nova role MODERATOR
+### 7. NOVO USUÁRIO loga na API
+### 8. NOVO USUÁRIO (id=2) atribui a role MODERATOR ao ADMIN (id=1)
+
+
+@host=http://localhost:8000
+
+
+
+
+### 1. ADMIN faz login recenbendo token de acesso
+# @name admin_login
+POST {{host}}/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "admin@email.com",
+    "password": "123123"
+}
+
+@admin_bearer_token = {{admin_login.response.body.*}}
+
+
+
+
+
+### 2. ADMIN criar uma nova ROLE - SET-USER (rota liberada para ADMIN)
+POST {{host}}/roles HTTP/1.1
+Authorization: {{admin_bearer_token}}
+Content-Type: application/json
+
+{
+    "name": "SET-USER"
+}
+
+
+
+
+
+### ADMIN atribui a ROLE SET-USER a ele mesmo
+POST {{host}}/users/1/role HTTP/1.1
+Authorization: {{admin_bearer_token}}
+Content-Type: application/json
+
+{
+    "name": "SET-USER"
+}
+
+
+
+
+
+### 4. NOVO USUÁRIO se registra na API - Rota liberada para todos 
+POST {{host}}/auth/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Dalmo",
+    "username": "dalmo",
+    "email": "dalmo@email.com",
+    "password": "654321"
+}
+
+### Lista todos usuários
+GET {{host}}/users HTTP/1.1
+
+
+
+
+
+
+
+### 5. ADMIN atribui a ROLE SET-USER ao NOVO USUÁRIO (id=2)
+POST {{host}}/users/2/role HTTP/1.1
+Authorization: {{admin_bearer_token}}
+Content-Type: application/json
+
+{
+    "name": "SET-USER"
+}
+
+
+
+
+
+### 6. ADMIN cria nova role MODERATOR
+POST {{host}}/roles HTTP/1.1
+Authorization: {{admin_bearer_token}}
+Content-Type: application/json
+
+{
+    "name": "MODERATOR"
+}
+
+### Listar todas ROLES
+GET {{host}}/roles HTTP/1.1
+Authorization: {{admin_bearer_token}}
+
+
+
+
+
+### 7. NOVO USUÁRIO loga na API
+# @name user_login
+POST {{host}}/auth/login HTTP/1.1
+// Content-Type: text/plain;charset=UTF-8
+Content-Type: application/json
+
+{
+    "email": "dalmo@email.com",
+    "password": "654321"
+}
+
+@user_bearer_token = {{user_login.response.body.*}}
+
+
+
+
+
+### 8. NOVO USUÁRIO (id=2) atribui a role MODERATOR ao ADMIN (id=1)
+POST {{host}}/users/1/role HTTP/1.1
+Authorization: {{user_bearer_token}}
+Content-Type: application/json
+
+{
+    "name": "MODERATOR"
+}

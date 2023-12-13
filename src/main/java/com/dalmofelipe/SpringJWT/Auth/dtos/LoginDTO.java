@@ -17,7 +17,7 @@ public class LoginDTO {
     private String password;
 
     public UsernamePasswordAuthenticationToken toAuthToken() {
-        return new UsernamePasswordAuthenticationToken(password, email);
+        return new UsernamePasswordAuthenticationToken(email, password);
     }
 
 }
