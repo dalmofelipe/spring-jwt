@@ -25,7 +25,7 @@ spring:
 
 jwt:
   token:
-    expiration: 300000
+    expiration: 300000 # 5min
     secret: spring-jwt-2023
   private:
     key: classpath:app.key

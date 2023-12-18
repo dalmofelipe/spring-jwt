@@ -36,7 +36,7 @@ Authorization: {{admin_bearer_token}}
 Content-Type: application/json
 
 {
-    "name": "SET-USER"
+    "name": "MINUTE4"
 }
 
 
