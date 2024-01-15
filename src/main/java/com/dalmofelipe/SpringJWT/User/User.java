@@ -37,6 +37,7 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles = new ArrayList<>();
 

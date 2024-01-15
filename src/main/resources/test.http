@@ -36,7 +36,7 @@ Authorization: {{admin_bearer_token}}
 Content-Type: application/json
 
 {
-    "name": "MINUTE4"
+    "name": "SET-USER"
 }
 
 
@@ -69,7 +69,6 @@ Content-Type: application/json
 
 ### Lista todos usuários
 GET {{host}}/users HTTP/1.1
-
 
 
 
