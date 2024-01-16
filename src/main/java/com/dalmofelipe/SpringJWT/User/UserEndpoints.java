@@ -5,6 +5,7 @@ import com.dalmofelipe.SpringJWT.Role.RoleRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,7 +26,8 @@ public class UserEndpoints {
     }
 
     @PostMapping("/{id}/role")
-    public ResponseEntity<Object> setUserRole(@PathVariable(name = "id") Long id,
+    public ResponseEntity<Object> setUserRole(
+            @NonNull @PathVariable(name = "id") Long id,
             @RequestBody RoleRecord role) {
 
         try {

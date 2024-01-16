@@ -2,10 +2,11 @@ package com.dalmofelipe.SpringJWT.User;
 
 import java.util.Optional;
 
-import com.dalmofelipe.SpringJWT.Auth.UserPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
+import com.dalmofelipe.SpringJWT.Auth.UserPasswordEncoder;
 import com.dalmofelipe.SpringJWT.Auth.dtos.RegisterDTO;
 import com.dalmofelipe.SpringJWT.Role.Role;
 import com.dalmofelipe.SpringJWT.Role.RoleRecord;
@@ -34,7 +35,7 @@ public class UserService {
         return this.userRepository.save(user);
     }
 
-    public User addUserRole(Long id, RoleRecord roleRecord) {
+    public User addUserRole(@NonNull Long id, RoleRecord roleRecord) {
         Optional<User> userOpt = this.userRepository.findById(id);
         var user = userOpt.orElseThrow(() -> new RuntimeException("usuário não encontrado"));
 
