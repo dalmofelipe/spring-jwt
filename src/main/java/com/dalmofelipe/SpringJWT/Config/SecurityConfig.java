@@ -52,7 +52,7 @@ public class SecurityConfig  {
                     .requestMatchers("/admin").hasAuthority("ADMIN")//.hasRole("ADMIN")
                     .requestMatchers("/roles/**").hasAuthority("ADMIN")
                     .requestMatchers("/users").permitAll()//.hasRole("USER")
-                    .requestMatchers("/users/{id}/role").hasAnyAuthority("SET-USER", "ADMIN")
+                    .requestMatchers("/users/{id}/role").hasAnyAuthority("SET_USER_ROLE", "ADMIN")
                     .requestMatchers("/auth/**").permitAll()
                     .requestMatchers("/h2/**").permitAll()
             )

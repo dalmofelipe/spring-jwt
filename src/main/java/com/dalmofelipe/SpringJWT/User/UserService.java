@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
-import com.dalmofelipe.SpringJWT.Auth.UserPasswordEncoder;
 import com.dalmofelipe.SpringJWT.Auth.dtos.RegisterDTO;
 import com.dalmofelipe.SpringJWT.Role.Role;
 import com.dalmofelipe.SpringJWT.Role.RoleRecord;
