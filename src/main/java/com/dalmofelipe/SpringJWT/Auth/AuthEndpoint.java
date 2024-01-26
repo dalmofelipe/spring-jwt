@@ -35,6 +35,7 @@ public class AuthEndpoint {
     @PostMapping("/login")
     public ResponseEntity<Object> login(@Validated @RequestBody LoginDTO login) {
 
+        // TODO: Mover logica do toAuthToken para controller do login
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken
             = login.toAuthToken();
 

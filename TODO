@@ -1,0 +1,7 @@
+- [ ] Mover logica do toAuthToken para controller do login
+- [ ] implementar Mappers
+- [ ] Validar cadastro do usuário via email
+- [ ] Implementar Testes com JUnit pelo menos
+- [ ] Completar operações do CRUD de ROLES
+- [ ] Containerizar API
+- [ ] Helm Chart

@@ -16,6 +16,7 @@ public class LoginDTO {
     @NotBlank
     private String password;
 
+    // TODO: remover isso daqui
     public UsernamePasswordAuthenticationToken toAuthToken() {
         return new UsernamePasswordAuthenticationToken(email, password);
     }
