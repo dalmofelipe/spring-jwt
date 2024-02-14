@@ -1,0 +1,2 @@
+- [ ] logout para invalidar um token ativo
+- [ ] rota para microservicos externos fazer validação de token, usuário, roles e routes permitidas

@@ -36,10 +36,10 @@ public class TokenService {
         String stringJWT = Jwts.builder()
             .issuer("spring-jwt-app")
             .subject(userLogged.getId().toString())
+            .claim("roles", userLogged.getAuthorities())
             .issuedAt(now)
             .expiration(expirationTime)
             .signWith(KEY)
-            .claim("test", true)
             .compact();
 
         this.isTokenValid(stringJWT);
