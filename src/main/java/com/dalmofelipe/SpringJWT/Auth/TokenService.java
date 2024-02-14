@@ -1,10 +1,10 @@
 package com.dalmofelipe.SpringJWT.Auth;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
 import javax.crypto.SecretKey;
 
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -14,8 +14,9 @@ import com.dalmofelipe.SpringJWT.User.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
 
-@Data
+
 @Service
 public class TokenService {
 
@@ -25,21 +26,29 @@ public class TokenService {
     @Value("${jwt.token.secret}")
     private String secret;
 
-    private static final SecretKey KEY = Jwts.SIG.HS256.key().build();
+    //private static final SecretKey KEY = Jwts.SIG.HS256.key().build();
+    private SecretKey MyKEY = null;
+
+    private SecretKey getSecretKey() {
+        return Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
+    }
 
     public String generateJWT(Authentication autheticate) {
+
         User userLogged = (User) autheticate.getPrincipal();
         
         Date now = new Date();
         Date expirationTime = new Date(now.getTime() + Long.parseLong(expirationTimeInMilis));
         
+        this.MyKEY = getSecretKey();
+
         String stringJWT = Jwts.builder()
             .issuer("spring-jwt-app")
             .subject(userLogged.getId().toString())
             .claim("roles", userLogged.getAuthorities())
             .issuedAt(now)
             .expiration(expirationTime)
-            .signWith(KEY)
+            .signWith(MyKEY)
             .compact();
 
         this.isTokenValid(stringJWT);
@@ -48,8 +57,10 @@ public class TokenService {
     }
 
     public Boolean isTokenValid(String tokenWithoutBearer) {
+        this.MyKEY = getSecretKey();
+        
         try {
-            JwtParser jwtParser = Jwts.parser().verifyWith(KEY).build();
+            JwtParser jwtParser = Jwts.parser().verifyWith(MyKEY).build();
             jwtParser.parseSignedClaims(tokenWithoutBearer);
             return true;
         }
@@ -59,7 +70,9 @@ public class TokenService {
     }
 
     public Long getSubject(String tokenWithoutBearer) {
-        JwtParser jwtParser = Jwts.parser().verifyWith(KEY).build();
+        this.MyKEY = getSecretKey();
+        
+        JwtParser jwtParser = Jwts.parser().verifyWith(MyKEY).build();
         Claims payload = jwtParser.parseSignedClaims(tokenWithoutBearer).getPayload();
         String subject = payload.getSubject();
         return Long.parseLong(subject);

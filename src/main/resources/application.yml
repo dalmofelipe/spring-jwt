@@ -11,7 +11,7 @@ spring:
     username: sa
     password: 
   jpa:
-    show-sql: true
+    show-sql: false
     database-platform: org.hibernate.dialect.H2Dialect
     defer-datasource-initialization: true
     open-in-view: false
@@ -26,7 +26,8 @@ spring:
 jwt:
   token:
     expiration: 300000 # 5min
-    secret: spring-jwt-2023
+    # https://passwordsgenerator.net/
+    secret: cY%^U+Ku6s~k@EeJ,f;x9p]y*PX3TR{} 
   private:
     key: classpath:app.key
   public:
@@ -39,5 +40,5 @@ logging:
       springframework:
         web: INFO
         security: INFO
-#       boot:
-#          autoconfigure: DEBUG
+      boot:
+         autoconfigure: INFO
