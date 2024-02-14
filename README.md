@@ -23,12 +23,3 @@ error | Rota liberada
 /users/{id}/role | Somente ADMIN e SET_USER_ROLE
 /auth/** | Rota liberada
 /h2/** | Rota liberada
-
-<br>
-
-### TODO
-
-- [ ] Validar cadastro do usuário via email
-- [ ] Completar operações do CRUD de ROLES
-- [ ] Containerizar API
-- [ ] Helm Chart

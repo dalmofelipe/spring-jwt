@@ -22,6 +22,7 @@ public class RegisterDTO {
     @Size(min = 3, max = 50)
     private String password;
 
+    // TODO: implementar Mappers
     public User toModel() {
         var user = new User();
         BeanUtils.copyProperties(this, user);
